@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3d0lb4b7bgyq"]
+
+[ext_resource type="Script" uid="uid://d1syebtdlccso" path="res://scripts/ending.gd" id="1_2x1jc"]
+[ext_resource type="FontFile" uid="uid://bl3h3u0luo76d" path="res://assets/font/Pixellari.ttf" id="1_fyrdv"]
+[ext_resource type="Shader" uid="uid://eyeyi60j8jkt" path="res://assets/shader/dither.gdshader" id="2_2x1jc"]
+[ext_resource type="AudioStream" uid="uid://dscc2dnpcvrj" path="res://assets/audio/sunset-walk.ogg" id="4_nfmnx"]
+[ext_resource type="AudioStream" uid="uid://csrl14a6riyqu" path="res://assets/audio/campfire.ogg" id="5_5amew"]
+[ext_resource type="AudioStream" uid="uid://c4drp05xtnph1" path="res://assets/audio/night.ogg" id="6_t1k4y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nfmnx"]
+shader = ExtResource("2_2x1jc")
+shader_parameter/exposure = 1.0
+shader_parameter/contrast = 1.2250000344375
+shader_parameter/saturation = 0.9
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 1.5000000475
+shader_parameter/enable_posterize = true
+shader_parameter/color_levels = 16.0
+shader_parameter/dither_strength = 0.35
+shader_parameter/chrom_aberration = 0.0
+shader_parameter/vignette_strength = 2.0
+shader_parameter/grain_strength = 0.2
+shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
+shader_parameter/tint_strength = 0.15
+shader_parameter/viewport_size_override = Vector2(0, 0)
+
+[node name="ending" type="Node3D"]
+script = ExtResource("1_2x1jc")
+
+[node name="intro" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+
+[node name="title" type="Label" parent="intro"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_fyrdv")
+theme_override_font_sizes/font_size = 30
+text = "KINDLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="dither" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_nfmnx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SunsetWalk" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_nfmnx")
+autoplay = true
+
+[node name="Campfire" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_5amew")
+autoplay = true
+
+[node name="Night" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_t1k4y")
+autoplay = true
